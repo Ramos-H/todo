@@ -1,4 +1,4 @@
-export function TaskCard({ taskId, taskName, state }) {
+export function TaskCard({ id, name, isDone }) {
   return (
     <div className="card mb-2">
       <div className="card-body">
@@ -10,15 +10,15 @@ export function TaskCard({ taskId, taskName, state }) {
                   type="checkbox"
                   name="isDone"
                   // Temp value
-                  id={`inputCheck-${taskId ?? 0}`}
-                  defaultChecked={state}
+                  id={`inputCheck-${id ?? 0}`}
+                  defaultChecked={isDone}
                   className="form-check-input"
                 />
                 <label
-                  htmlFor={`inputCheck-${taskId ?? 0}`}
+                  htmlFor={`inputCheck-${id ?? 0}`}
                   className="form-check-label"
                 >
-                  {taskName ?? "Task"}
+                  {name ?? "Task"}
                 </label>
               </div>
             </div>

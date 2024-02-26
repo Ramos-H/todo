@@ -1,7 +1,10 @@
 import { Header } from "./Header";
 import { TaskList } from "./TaskList";
+import { data } from "./TaskData";
 
 export default function App() {
+  const data2 = data;
+
   return (
     <div className="container">
       <Header />
@@ -31,7 +34,7 @@ export default function App() {
               </div>
             </div>
 
-            <TaskList />
+            <TaskList tasks={data2} />
           </div>
         </div>
       </div>

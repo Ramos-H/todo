@@ -1,9 +1,8 @@
 import { TaskCard } from "./TaskCard";
 
 export function TaskList({ tasks }) {
-  tasks = tasks ?? Array.from(Array(5).keys());
-  const pendingTasks = tasks.filter((x) => x < 3);
-  const doneTasks = tasks.filter((x) => x >= 3);
+  const pendingTasks = tasks.filter((task) => !task.isDone);
+  const doneTasks = tasks.filter((task) => task.isDone);
 
   return (
     <div className="row mb-3">
@@ -28,7 +27,7 @@ export function TaskList({ tasks }) {
             >
               <div class="accordion-body">
                 {pendingTasks.map((task) => (
-                  <TaskCard key={task} />
+                  <TaskCard key={task} {...task} />
                 ))}
               </div>
             </div>
@@ -52,7 +51,7 @@ export function TaskList({ tasks }) {
             >
               <div class="accordion-body">
                 {doneTasks.map((task) => (
-                  <TaskCard key={task} />
+                  <TaskCard key={task} {...task} />
                 ))}
               </div>
             </div>
