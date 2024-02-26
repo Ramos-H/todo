@@ -1,3 +1,4 @@
+import { useState } from "react";
 import { TaskCard } from "./TaskCard";
 
 export function TaskList({ tasks }) {
@@ -7,11 +8,11 @@ export function TaskList({ tasks }) {
   return (
     <div className="row mb-3">
       <div className="col">
-        <div class="accordion" id="accordionPanelsStayOpenExample">
-          <div class="accordion-item">
-            <h2 class="accordion-header">
+        <div className="accordion" id="accordionPanelsStayOpenExample">
+          <div className="accordion-item">
+            <h2 className="accordion-header">
               <button
-                class="accordion-button"
+                className="accordion-button"
                 type="button"
                 data-bs-toggle="collapse"
                 data-bs-target="#panelsStayOpen-collapseOne"
@@ -23,19 +24,19 @@ export function TaskList({ tasks }) {
             </h2>
             <div
               id="panelsStayOpen-collapseOne"
-              class="accordion-collapse collapse show"
+              className="accordion-collapse collapse show"
             >
-              <div class="accordion-body">
+              <div className="accordion-body">
                 {pendingTasks.map((task) => (
-                  <TaskCard key={task} {...task} />
+                  <TaskCard key={task.id} {...task} />
                 ))}
               </div>
             </div>
           </div>
-          <div class="accordion-item">
-            <h2 class="accordion-header">
+          <div className="accordion-item">
+            <h2 className="accordion-header">
               <button
-                class="accordion-button collapsed"
+                className="accordion-button collapsed"
                 type="button"
                 data-bs-toggle="collapse"
                 data-bs-target="#panelsStayOpen-collapseTwo"
@@ -47,11 +48,11 @@ export function TaskList({ tasks }) {
             </h2>
             <div
               id="panelsStayOpen-collapseTwo"
-              class="accordion-collapse collapse"
+              className="accordion-collapse collapse"
             >
-              <div class="accordion-body">
+              <div className="accordion-body">
                 {doneTasks.map((task) => (
-                  <TaskCard key={task} {...task} />
+                  <TaskCard key={task.id} {...task} />
                 ))}
               </div>
             </div>

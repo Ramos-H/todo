@@ -29,7 +29,7 @@ export function TaskCard({ id, name, isDone }) {
             <div className="col-auto">
               <button className="btn btn-danger">
                 <strong>
-                  Delete <i class="bi bi-trash3-fill"></i>
+                  Delete <i className="bi bi-trash3-fill"></i>
                 </strong>
               </button>
             </div>
