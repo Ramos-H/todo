@@ -16,7 +16,9 @@ export function TaskCard({ id, name, isDone }) {
                 />
                 <label
                   htmlFor={`inputCheck-${id ?? 0}`}
-                  className="form-check-label"
+                  className={`form-check-label ${
+                    isDone && "text-decoration-line-through text-secondary"
+                  }`}
                 >
                   {name ?? "Task"}
                 </label>
