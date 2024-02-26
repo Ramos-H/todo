@@ -1,6 +1,6 @@
-import { Header } from "./Header";
-import { TaskList } from "./TaskList";
 import { data } from "./TaskData";
+import { Header } from "./components/Header";
+import { TaskList } from "./components/TaskList";
 
 export default function App() {
   const data2 = data;
