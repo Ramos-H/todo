@@ -12,12 +12,12 @@ export function TaskCard({ id, name, isDone }) {
                   type="checkbox"
                   name="isDone"
                   // Temp value
-                  id={`inputCheck-${id ?? 0}`}
+                  id={`inputCheck-${id}`}
                   defaultChecked={isDone}
                   className="form-check-input"
                 />
                 <label
-                  htmlFor={`inputCheck-${id ?? 0}`}
+                  htmlFor={`inputCheck-${id}`}
                   className={`form-check-label ${
                     isDone && "text-decoration-line-through text-secondary"
                   }`}
