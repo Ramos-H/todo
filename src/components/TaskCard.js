@@ -1,6 +1,8 @@
+import styles from "./styles/TaskCard.module.css";
+
 export function TaskCard({ id, name, isDone }) {
   return (
-    <div className="card mb-2">
+    <div className={`card mb-2 ${styles.taskCard}`}>
       <div className="card-body">
         <div className="container-fluid">
           <div className="row align-items-center">
