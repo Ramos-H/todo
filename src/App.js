@@ -1,9 +1,15 @@
-import { data } from "./TaskData";
 import { Header } from "./components/Header";
 import { TaskList } from "./components/TaskList";
+import { TaskForm } from "./components/TaskForm";
+import { useState } from "react";
 
 export default function App() {
-  const data2 = data;
+  const [tasks, setTasks] = useState([]);
+
+  function handleAddTask(newTask) {
+    setTasks((currentTasks) => [...currentTasks, newTask]);
+    console.log(newTask);
+  }
 
   return (
     <div className="container">
@@ -12,29 +18,8 @@ export default function App() {
       <div className="row justify-content-center">
         <div className="col col-lg-6">
           <div className="container-fluid">
-            <div className="row mb-3">
-              <div className="col">
-                <form>
-                  <label htmlFor="nameInput" className="form-label">
-                    <strong>New Task Name</strong>
-                  </label>
-                  <div className="input-group">
-                    <input
-                      type="text"
-                      id="nameInput"
-                      className="form-control"
-                    />
-                    <button className="btn btn-success">
-                      <strong>
-                        Add <i class="bi bi-plus-lg"></i>
-                      </strong>
-                    </button>
-                  </div>
-                </form>
-              </div>
-            </div>
-
-            <TaskList tasks={data2} />
+            <TaskForm onAddTask={handleAddTask} />
+            <TaskList tasks={tasks} />
           </div>
         </div>
       </div>
