@@ -1,6 +1,6 @@
 import { TaskCard } from "./TaskCard";
 
-export function TaskList({ tasks }) {
+export function TaskList({ tasks, onDeleteTask }) {
   const pendingTasks = tasks.filter((task) => !task.isDone);
   const doneTasks = tasks.filter((task) => task.isDone);
 
@@ -27,7 +27,10 @@ export function TaskList({ tasks }) {
             >
               <div className="accordion-body">
                 {pendingTasks.map((task) => (
-                  <TaskCard key={task.id} {...task} />
+                  <TaskCard
+                    key={task.id}
+                    {...{ ...task, onDelete: onDeleteTask }}
+                  />
                 ))}
               </div>
             </div>
@@ -51,7 +54,10 @@ export function TaskList({ tasks }) {
             >
               <div className="accordion-body">
                 {doneTasks.map((task) => (
-                  <TaskCard key={task.id} {...task} />
+                  <TaskCard
+                    key={task.id}
+                    {...{ ...task, onDelete: onDeleteTask }}
+                  />
                 ))}
               </div>
             </div>

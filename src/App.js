@@ -8,8 +8,11 @@ export default function App() {
 
   function handleAddTask(newTask) {
     setTasks((currentTasks) => [...currentTasks, newTask]);
-    console.log(newTask);
   }
+
+  const handleDeleteTask = (id) => {
+    setTasks((currentTasks) => currentTasks.filter((task) => task.id !== id));
+  };
 
   return (
     <div className="container">
@@ -19,7 +22,7 @@ export default function App() {
         <div className="col col-lg-6">
           <div className="container-fluid">
             <TaskForm onAddTask={handleAddTask} />
-            <TaskList tasks={tasks} />
+            <TaskList tasks={tasks} onDeleteTask={handleDeleteTask} />
           </div>
         </div>
       </div>

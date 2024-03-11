@@ -1,6 +1,6 @@
 import styles from "./styles/TaskCard.module.css";
 
-export function TaskCard({ id, name, isDone }) {
+export function TaskCard({ id, name, isDone, onDelete }) {
   return (
     <div className={`card mb-2 ${styles.taskCard}`}>
       <div className="card-body">
@@ -27,7 +27,7 @@ export function TaskCard({ id, name, isDone }) {
               </div>
             </div>
             <div className="col-auto">
-              <button className="btn btn-danger">
+              <button className="btn btn-danger" onClick={() => onDelete(id)}>
                 <strong>
                   Delete <i className="bi bi-trash3-fill"></i>
                 </strong>
