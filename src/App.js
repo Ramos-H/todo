@@ -10,6 +10,14 @@ export default function App() {
     setTasks((currentTasks) => [...currentTasks, newTask]);
   }
 
+  function handleUpdateCompletion(id) {
+    setTasks((currentTasks) =>
+      currentTasks.map((task) => {
+        return task.id === id ? { ...task, isDone: !task.isDone } : task;
+      })
+    );
+  }
+
   const handleDeleteTask = (id) => {
     setTasks((currentTasks) => currentTasks.filter((task) => task.id !== id));
   };
@@ -22,7 +30,11 @@ export default function App() {
         <div className="col col-lg-6">
           <div className="container-fluid">
             <TaskForm onAddTask={handleAddTask} />
-            <TaskList tasks={tasks} onDeleteTask={handleDeleteTask} />
+            <TaskList
+              tasks={tasks}
+              onUpdateCompletion={handleUpdateCompletion}
+              onDeleteTask={handleDeleteTask}
+            />
           </div>
         </div>
       </div>

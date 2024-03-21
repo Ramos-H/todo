@@ -1,6 +1,6 @@
 import { TaskCard } from "./TaskCard";
 
-export function TaskList({ tasks, onDeleteTask }) {
+export function TaskList({ tasks, onUpdateCompletion, onDeleteTask }) {
   const pendingTasks = tasks.filter((task) => !task.isDone);
   const doneTasks = tasks.filter((task) => task.isDone);
 
@@ -18,7 +18,7 @@ export function TaskList({ tasks, onDeleteTask }) {
                 aria-expanded="true"
                 aria-controls="panelsStayOpen-collapseOne"
               >
-                <strong>Pending Tasks</strong>
+                <strong>Pending Tasks ({pendingTasks.length})</strong>
               </button>
             </h2>
             <div
@@ -29,7 +29,11 @@ export function TaskList({ tasks, onDeleteTask }) {
                 {pendingTasks.map((task) => (
                   <TaskCard
                     key={task.id}
-                    {...{ ...task, onDelete: onDeleteTask }}
+                    {...{
+                      ...task,
+                      onUpdateCompletion: onUpdateCompletion,
+                      onDelete: onDeleteTask,
+                    }}
                   />
                 ))}
               </div>
@@ -45,7 +49,7 @@ export function TaskList({ tasks, onDeleteTask }) {
                 aria-expanded="false"
                 aria-controls="panelsStayOpen-collapseTwo"
               >
-                <strong>Completed Tasks</strong>
+                <strong>Completed Tasks ({doneTasks.length})</strong>
               </button>
             </h2>
             <div
@@ -56,7 +60,11 @@ export function TaskList({ tasks, onDeleteTask }) {
                 {doneTasks.map((task) => (
                   <TaskCard
                     key={task.id}
-                    {...{ ...task, onDelete: onDeleteTask }}
+                    {...{
+                      ...task,
+                      onUpdateCompletion: onUpdateCompletion,
+                      onDelete: onDeleteTask,
+                    }}
                   />
                 ))}
               </div>

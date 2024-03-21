@@ -1,6 +1,6 @@
 import styles from "./styles/TaskCard.module.css";
 
-export function TaskCard({ id, name, isDone, onDelete }) {
+export function TaskCard({ id, name, isDone, onUpdateCompletion, onDelete }) {
   return (
     <div className={`card mb-2 ${styles.taskCard}`}>
       <div className="card-body">
@@ -15,6 +15,7 @@ export function TaskCard({ id, name, isDone, onDelete }) {
                   id={`inputCheck-${id}`}
                   defaultChecked={isDone}
                   className="form-check-input"
+                  onChange={() => onUpdateCompletion(id)}
                 />
                 <label
                   htmlFor={`inputCheck-${id}`}
