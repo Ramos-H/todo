@@ -1,9 +1,11 @@
 import { TaskCard } from "./TaskCard";
 
-export function TaskList({ tasks, onUpdateCompletion, onDeleteTask }) {
-  const pendingTasks = tasks.filter((task) => !task.isDone);
-  const doneTasks = tasks.filter((task) => task.isDone);
-
+export function TaskList({
+  pendingTasks,
+  doneTasks,
+  onUpdateCompletion,
+  onDeleteTask,
+}) {
   return (
     <div className="row mb-3">
       <div className="col">
