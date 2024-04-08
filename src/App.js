@@ -2,10 +2,15 @@ import { Header } from "./components/Header";
 import { TaskList } from "./components/TaskList";
 import { TaskForm } from "./components/TaskForm";
 import { useState } from "react";
+import { TaskEditModal } from "./components/TaskEditModal";
+import { SortOptions, sortAndFilterTasks } from "./utils";
+import { SortAndFilterForm } from "./components/SortAndFilterForm";
 
 export default function App() {
   const [tasks, setTasks] = useState([]);
   const [query, setQuery] = useState("");
+  const [lastLoad, setLastLoad] = useState(Date.now());
+  const [sortField, setSortField] = useState(SortOptions.Newest);
 
   function handleAddTask(newTask) {
     setTasks((currentTasks) => [...currentTasks, newTask]);
@@ -19,19 +24,26 @@ export default function App() {
     );
   }
 
+  function handleEditTask(editedTask) {
+    setTasks((currentTasks) => [
+      ...currentTasks.filter((task) => task.id !== editedTask.id),
+      editedTask,
+    ]);
+  }
+
   function handleDeleteTask(id) {
     setTasks((currentTasks) => currentTasks.filter((task) => task.id !== id));
+  }
+
+  function handleReload() {
+    setLastLoad(Date.now());
   }
 
   const pendingTasks = tasks.filter((task) => !task.isDone);
   const doneTasks = tasks.filter((task) => task.isDone);
 
-  const filteredPendingTasks = pendingTasks.filter((task) =>
-    task.name.includes(query)
-  );
-  const filteredDoneTasks = doneTasks.filter((task) =>
-    task.name.includes(query)
-  );
+  let filteredPendingTasks = sortAndFilterTasks(pendingTasks, sortField, query);
+  let filteredDoneTasks = sortAndFilterTasks(doneTasks, sortField, query);
 
   const totalProgress = (doneTasks.length / tasks.length) * 100;
   return (
@@ -50,25 +62,19 @@ export default function App() {
           <div className="container-fluid">
             <TaskForm onAddTask={handleAddTask} />
 
-            <div className="row mb-3">
-              <div className="col">
-                <label htmlFor="queryInput" className="form-label">
-                  <strong>Search</strong>
-                </label>
-                <input
-                  type="text"
-                  id="queryInput"
-                  className="form-control"
-                  onChange={(e) => setQuery(e.target.value)}
-                />
-              </div>
-            </div>
+            <SortAndFilterForm
+              onSetQuery={setQuery}
+              onChangeSortField={setSortField}
+            />
 
             <TaskList
               pendingTasks={filteredPendingTasks}
               doneTasks={filteredDoneTasks}
+              lastReload={lastLoad}
               onUpdateCompletion={handleUpdateCompletion}
               onDeleteTask={handleDeleteTask}
+              onEditTask={handleEditTask}
+              onReload={handleReload}
             />
           </div>
         </div>

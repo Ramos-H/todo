@@ -3,8 +3,11 @@ import { TaskCard } from "./TaskCard";
 export function TaskList({
   pendingTasks,
   doneTasks,
+  lastReload,
   onUpdateCompletion,
   onDeleteTask,
+  onEditTask,
+  onReload,
 }) {
   return (
     <div className="row mb-3">
@@ -30,11 +33,13 @@ export function TaskList({
               <div className="accordion-body">
                 {pendingTasks.map((task) => (
                   <TaskCard
-                    key={task.id}
+                    key={`${task.id}-${lastReload}`}
                     {...{
                       ...task,
                       onUpdateCompletion: onUpdateCompletion,
                       onDelete: onDeleteTask,
+                      onEdit: onEditTask,
+                      onReload: onReload,
                     }}
                   />
                 ))}
@@ -61,11 +66,13 @@ export function TaskList({
               <div className="accordion-body">
                 {doneTasks.map((task) => (
                   <TaskCard
-                    key={task.id}
+                    key={`${task.id}-${lastReload}`}
                     {...{
                       ...task,
                       onUpdateCompletion: onUpdateCompletion,
                       onDelete: onDeleteTask,
+                      onEdit: onEditTask,
+                      onReload: onReload,
                     }}
                   />
                 ))}
