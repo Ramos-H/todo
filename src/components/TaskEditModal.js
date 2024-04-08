@@ -6,9 +6,7 @@ export function TaskEditModal({ task, onEditTask }) {
   function handleSubmit(e) {
     if (!newName.trim()) return;
 
-    console.log(`Before: ${task}`);
     const editedTask = { ...task, name: newName };
-    console.log(`After: ${editedTask}`);
 
     onEditTask(editedTask);
   }

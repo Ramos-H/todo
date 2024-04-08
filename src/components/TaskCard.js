@@ -76,10 +76,12 @@ export function TaskCard({
                 <div className="col-auto">
                   {mode === TaskCardModes.EditMode ? (
                     <>
+                      {/* Save task edit button */}
                       <button type="submit" className="btn btn-success me-1">
                         <i className="bi bi-floppy-fill"></i>
                       </button>
 
+                      {/* Cancel task edit button */}
                       <button
                         type="button"
                         className="btn btn-danger me-1"
@@ -89,6 +91,7 @@ export function TaskCard({
                       </button>
                     </>
                   ) : (
+                    // Toggle task edit button
                     <button
                       type="button"
                       className="btn btn-info me-1"
@@ -98,6 +101,7 @@ export function TaskCard({
                     </button>
                   )}
 
+                  {/* Delete button */}
                   <button
                     className="btn btn-danger"
                     type="button"
